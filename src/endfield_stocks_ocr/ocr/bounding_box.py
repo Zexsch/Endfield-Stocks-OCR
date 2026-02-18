@@ -1,6 +1,5 @@
 from importlib import resources
 from pathlib import Path
-from platformdirs import user_config_dir
 
 import toml
 from endfield_stocks_ocr.models.bounding_box import BoundingBox
@@ -8,13 +7,9 @@ from endfield_stocks_ocr.models.bounding_box import BoundingBox
 
 class BoundingBoxHandler:
     def __init__(self):
-        self.config_dir = (
-            Path(user_config_dir("endfield_stocks_ocr", appauthor=False))
-            / "config.toml"
-        )
-        self.default_config_dir = (
-            Path(__file__).parent.parent / "config/default_config.toml"
-        )
+        base_dir = Path(__file__).parent.parent / 'config'
+        self.config_dir = base_dir / 'user_config.toml'
+        self.default_config_dir = base_dir / 'default_config.toml'
 
         self._config: BoundingBox = self._get_bounding_box()
 
@@ -39,10 +34,10 @@ class BoundingBoxHandler:
                 config = toml.load(f)
 
         bounding_box = BoundingBox(
-            x=config["x_percent"],
-            y=config["y_percent"],
-            width=config["width_percent"],
-            height=config["height_percent"],
+            x=config['bounding_box']["x_percent"],
+            y=config['bounding_box']["y_percent"],
+            width=config['bounding_box']["width_percent"],
+            height=config['bounding_box']["height_percent"],
         )
 
         return bounding_box
@@ -51,7 +46,7 @@ class BoundingBoxHandler:
         self, x: float, y: float, width: float, height: float
     ) -> None:
         if not self.config_dir.exists():
-            self.config_dir.mkdir(parents=True, exist_ok=True)
+            self.config_dir.touch()
             
         user_config = toml.load(self.config_dir)
             

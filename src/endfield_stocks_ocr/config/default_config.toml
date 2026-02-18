@@ -1,5 +1,5 @@
 [bounding_box]
-x_percent = 0.25
-y_percent = 0.25
-width_percent = 0.5
-height_percent = 0.5
+x_percent = 0.05
+y_percent = 0.3
+width_percent = 0.9
+height_percent = 0.9
