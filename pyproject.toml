@@ -1,0 +1,34 @@
+[build-system]
+requires = ["hatchling >= 1.26"]
+build-backend = "hatchling.build"
+
+[project]
+name = "endfield_stocks_ocr"
+version = "1.0.0"
+description = "OCR tool to get endfield stock data"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { file = "LICENSE" }
+keywords = ["endfield", "ocr"]
+authors = [{ name = "Zexsch "}]
+dependencies = [
+  "pytesseract",
+  "pillow",
+  "pyautogui",
+  "toml"
+]
+
+[project.scripts]
+endfield-stocks-ocr = "endfield_stocks_ocr.main:main"
+endfield-stocks-set-window = "endfield_stocks_ocr.ocr.set_window:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/endfield_stocks_ocr"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "src/",
+    "README.md",
+    "LICENSE",
+    "pyproject.toml"
+]
