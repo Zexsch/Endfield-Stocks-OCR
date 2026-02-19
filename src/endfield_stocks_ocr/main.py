@@ -2,8 +2,8 @@ import argparse
 from pathlib import Path
 
 from endfield_stocks_ocr.ocr.get_values import get_values
-from endfield_stocks_ocr.unpack import unpack
-from endfield_stocks_ocr.aspect_ratio import check_aspect_ratio
+from endfield_stocks_ocr.utils.unpack import unpack
+from endfield_stocks_ocr.utils.aspect_ratio import check_aspect_ratio
 
 def main():
     unpack()
