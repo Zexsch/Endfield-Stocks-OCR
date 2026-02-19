@@ -33,7 +33,7 @@ class BoundingBoxHandler:
                 "endfield_stocks_ocr.config", str(self.default_config_dir)
             ) as f:
                 config = toml.load(f)
-                
+
         if self.region not in config:
             config[self.region] = {}
             config = config[self.region]
@@ -41,7 +41,7 @@ class BoundingBoxHandler:
             config["y_percent"] = 0
             config["width_percent"] = 0
             config["height_percent"] = 0
-            
+
         config = config[self.region]
 
         bounding_box = BoundingBox(

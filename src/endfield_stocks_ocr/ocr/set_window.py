@@ -8,12 +8,12 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--wuling", action="store_true")
     args = parser.parse_args()
-    
+
     if args.wuling:
         region = "wuling"
     else:
         region = "valley"
-    
+
     print("Move mouse to the TOP LEFT corner of the area and wait 3 seconds...")
     pyautogui.sleep(3)
     x1, y1 = pyautogui.position()
@@ -35,7 +35,7 @@ def main():
         x2 / screen_width,
         y2 / screen_height,
     )
-    
+
     print(f"Set user bounding box to {relative_box}")
 
 
