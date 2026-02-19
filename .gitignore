@@ -216,3 +216,6 @@ __marimo__/
 
 # Config
 config.toml
+
+# Custom
+.vscode

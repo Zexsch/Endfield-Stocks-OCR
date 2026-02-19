@@ -12,10 +12,9 @@ license = { file = "LICENSE" }
 keywords = ["endfield", "ocr"]
 authors = [{ name = "Zexsch "}]
 dependencies = [
-  "pytesseract",
-  "pillow",
   "pyautogui",
-  "toml"
+  "toml",
+  "pillow"
 ]
 
 [project.scripts]

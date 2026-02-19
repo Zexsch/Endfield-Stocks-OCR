@@ -6,17 +6,18 @@ from endfield_stocks_ocr.models.bounding_box import BoundingBox
 
 
 class BoundingBoxHandler:
-    def __init__(self):
-        base_dir = Path(__file__).parent.parent / 'config'
-        self.config_dir = base_dir / 'user_config.toml'
-        self.default_config_dir = base_dir / 'default_config.toml'
+    def __init__(self, region):
+        base_dir = Path(__file__).parent.parent / "config"
+        self.config_dir = base_dir / "user_config.toml"
+        self.default_config_dir = base_dir / "default_config.toml"
+        self.region = f"bounding_box_{region}"
 
         self._config: BoundingBox = self._get_bounding_box()
 
     @property
     def config(self) -> BoundingBox:
         return self._config
-    
+
     @config.setter
     def config(self, bounding_box: BoundingBox) -> None:
         self._config = bounding_box
@@ -32,12 +33,22 @@ class BoundingBoxHandler:
                 "endfield_stocks_ocr.config", str(self.default_config_dir)
             ) as f:
                 config = toml.load(f)
+                
+        if self.region not in config:
+            config[self.region] = {}
+            config = config[self.region]
+            config["x_percent"] = 0
+            config["y_percent"] = 0
+            config["width_percent"] = 0
+            config["height_percent"] = 0
+            
+        config = config[self.region]
 
         bounding_box = BoundingBox(
-            x=config['bounding_box']["x_percent"],
-            y=config['bounding_box']["y_percent"],
-            width=config['bounding_box']["width_percent"],
-            height=config['bounding_box']["height_percent"],
+            x=config["x_percent"],
+            y=config["y_percent"],
+            width=config["width_percent"],
+            height=config["height_percent"],
         )
 
         return bounding_box
@@ -47,18 +58,18 @@ class BoundingBoxHandler:
     ) -> None:
         if not self.config_dir.exists():
             self.config_dir.touch()
-            
+
         user_config = toml.load(self.config_dir)
-            
-        if "bounding_box" not in user_config:
-            user_config['bounding_box'] = {}
-            
-        user_config["bounding_box"]["x_percent"] = x
-        user_config["bounding_box"]["y_percent"] = y
-        user_config["bounding_box"]["width_percent"] = width
-        user_config["bounding_box"]["height_percent"] = height
-        
+
+        if self.region not in user_config:
+            user_config[self.region] = {}
+
+        user_config[self.region]["x_percent"] = x
+        user_config[self.region]["y_percent"] = y
+        user_config[self.region]["width_percent"] = width
+        user_config[self.region]["height_percent"] = height
+
         with self.config_dir.open("w") as f:
             toml.dump(user_config, f)
-            
+
         self.config = BoundingBox(x=x, y=y, width=width, height=height)
