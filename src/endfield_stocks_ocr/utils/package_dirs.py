@@ -3,6 +3,10 @@ from importlib import resources
 from importlib.resources.abc import Traversable
 from platformdirs import user_config_dir
 
+import toml
+
+from endfield_stocks_ocr.utils.logger import EndfieldLogger
+
 
 class PackageDirs:
     def __init__(self):
@@ -38,8 +42,8 @@ class PackageDirs:
         return self.debug_files_dir
 
     def _create_user_config(self) -> None:
-        import toml
-
+        logger = EndfieldLogger().get_logger()
+        logger.info("Creating user config.")
         with self.default_config.open("r", encoding="utf-8") as f:
             config = toml.load(f)
 

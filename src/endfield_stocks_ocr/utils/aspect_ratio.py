@@ -3,10 +3,13 @@ import math
 import pyautogui
 import toml
 
+from endfield_ocr_core.models.config import Config
+
 from endfield_stocks_ocr.utils.package_dirs import PackageDirs
+from endfield_stocks_ocr.utils.logger import EndfieldLogger
 
 
-def check_aspect_ratio():
+def check_aspect_ratio(args: Config):
     """Checks the aspect ratio of the Monitor and adjusts screenshot region"""
     width, height = pyautogui.size()
     gcd = math.gcd(width, height)
@@ -16,6 +19,10 @@ def check_aspect_ratio():
 
     if ratio_width == 16 and ratio_height == 9:
         return
+    
+    logger = EndfieldLogger(debug=args.debug).get_logger()
+    
+    logger.info(f"Found different aspect ratio: {ratio_width}:{ratio_height}")
 
     dirs = PackageDirs()
 

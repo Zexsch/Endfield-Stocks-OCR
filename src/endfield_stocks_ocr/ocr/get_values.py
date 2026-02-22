@@ -7,9 +7,12 @@ from endfield_ocr_core.models.config import Config, Region
 
 from endfield_stocks_ocr.ocr.bounding_box import BoundingBoxHandler
 from endfield_stocks_ocr.utils.package_dirs import PackageDirs
+from endfield_stocks_ocr.utils.logger import EndfieldLogger
 
 
 def get_values(args: Config):
+    logger = EndfieldLogger(debug=args.debug).get_logger()
+    
     region = args.region.value
     handler = BoundingBoxHandler(region=region)
 
@@ -22,6 +25,7 @@ def get_values(args: Config):
     right = int(screen_width * relative_box[2])
     bottom = int(screen_height * relative_box[3])
 
+    logger.debug(f"Taking screenshot of region: {left, top, right - left, bottom - top}")
     img = pyautogui.screenshot(region=(left, top, right - left, bottom - top))
 
     if args.debug:

@@ -1,7 +1,6 @@
 from logging import Logger
 from logging import getLogger, INFO, Formatter, DEBUG
 from logging import FileHandler
-from pathlib import Path
 from datetime import datetime
 
 from endfield_stocks_ocr.utils.package_dirs import PackageDirs
