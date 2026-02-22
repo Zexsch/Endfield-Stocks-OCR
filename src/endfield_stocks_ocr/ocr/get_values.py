@@ -1,11 +1,12 @@
 from dataclasses import asdict
-from pathlib import Path
+from datetime import datetime
 
 import pyautogui
-from endfield_ocr_core.get_number import get_number
+from endfield_ocr_core.get_ocr_values import get_ocr_values
 from endfield_ocr_core.models.config import Config, Region
 
 from endfield_stocks_ocr.ocr.bounding_box import BoundingBoxHandler
+from endfield_stocks_ocr.utils.package_dirs import PackageDirs
 
 
 def get_values(args: Config):
@@ -22,18 +23,29 @@ def get_values(args: Config):
     bottom = int(screen_height * relative_box[3])
 
     img = pyautogui.screenshot(region=(left, top, right - left, bottom - top))
-    img_path = Path(__file__).parent.parent / "data/latest_image.png"
-    img.save(str(img_path))
-    
+
+    if args.debug:
+        dirs = PackageDirs()
+
+        img_path = dirs.debug_files / "Data"
+        img_path.mkdir(parents=True, exist_ok=True)
+
+        now = datetime.now().strftime("%Y-%m-%d_%H%M%S")
+        img_path = img_path / f"{args.region.value}_{now}.png"
+
+        img.save(str(img_path))
+
     rows, cols = 0, 0
 
     if region == Region.WULING.value:
         rows = 1
         cols = 4
-    
+
     if region == Region.VALLEY.value:
         rows = 2
         cols = 7
 
-    text = get_number(img, rows=rows, cols=cols, region=region, debug_files=args.debug)
+    text = get_ocr_values(
+        img, rows=rows, cols=cols, region=region, debug_files=args.debug
+    )
     print(text)

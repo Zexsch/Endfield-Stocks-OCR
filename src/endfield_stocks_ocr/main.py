@@ -3,12 +3,10 @@ import argparse
 from endfield_ocr_core.models.config import Region, Config
 
 from endfield_stocks_ocr.ocr.get_values import get_values
-from endfield_stocks_ocr.utils.unpack import unpack
 from endfield_stocks_ocr.utils.aspect_ratio import check_aspect_ratio
 
 
 def main():
-    unpack()
     check_aspect_ratio()
 
     parser = argparse.ArgumentParser()
@@ -16,10 +14,10 @@ def main():
     parser.add_argument("--debug", action="store_true")
     args = parser.parse_args()
     config = Config()
-    
+
     if args.wuling:
         config.region = Region.WULING
-    
+
     if args.debug:
         config.debug = True
 

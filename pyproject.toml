@@ -14,7 +14,7 @@ authors = [{ name = "Zexsch "}]
 dependencies = [
   "pyautogui",
   "toml",
-  "pillow"
+  "pillow",
 ]
 
 [project.scripts]

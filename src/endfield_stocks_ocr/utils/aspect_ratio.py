@@ -1,14 +1,13 @@
 import math
-from importlib import resources
-from pathlib import Path
 
 import pyautogui
 import toml
 
+from endfield_stocks_ocr.utils.package_dirs import PackageDirs
+
 
 def check_aspect_ratio():
-    """Checks the aspect ratio of the Monitor and adjusts screenshot region
-    """
+    """Checks the aspect ratio of the Monitor and adjusts screenshot region"""
     width, height = pyautogui.size()
     gcd = math.gcd(width, height)
 
@@ -18,10 +17,13 @@ def check_aspect_ratio():
     if ratio_width == 16 and ratio_height == 9:
         return
 
-    config_dir = Path(__file__).parent / "config/default_config.toml"
+    dirs = PackageDirs()
 
-    with resources.open_text("endfield_stocks_ocr.config", str(config_dir)) as f:
+    with dirs.default_config.open("r", encoding="utf-8") as f:
         config = toml.load(f)
+
+    if config["flags"]["aspect_ratio"]:
+        return
 
     for region in config["regions"]:
         bbox = config[f"bounding_box_{region}"]
@@ -30,5 +32,7 @@ def check_aspect_ratio():
         bbox["width_percent"] = (bbox["width_percent"] / 16) * ratio_width
         bbox["height_percent"] = (bbox["height_percent"] / 9) * ratio_height
 
-    with config_dir.open("w") as f:
+    config["flags"]["aspect_ratio"] = True
+
+    with dirs.user_config.open("w", encoding="utf-8") as f:
         toml.dump(config, f)

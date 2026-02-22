@@ -3,7 +3,7 @@ valley = "valley"
 wuling = "wuling"
 
 [bounding_box_valley]
-x_percent = 0.052
+x_percent = 0.054
 y_percent = 0.3
 width_percent = 0.88
 height_percent = 0.9
@@ -13,3 +13,6 @@ x_percent = 0.052
 y_percent = 0.6
 width_percent = 0.52
 height_percent = 0.9
+
+[flags]
+aspect_ratio = false
