@@ -1,7 +1,11 @@
+[regions]
+valley = "valley"
+wuling = "wuling"
+
 [bounding_box_valley]
-x_percent = 0.05
+x_percent = 0.052
 y_percent = 0.3
-width_percent = 0.9
+width_percent = 0.88
 height_percent = 0.9
 
 [bounding_box_wuling]
@@ -9,7 +13,3 @@ x_percent = 0.052
 y_percent = 0.6
 width_percent = 0.52
 height_percent = 0.9
-
-[regions]
-valley = "valley"
-wuling = "wuling"

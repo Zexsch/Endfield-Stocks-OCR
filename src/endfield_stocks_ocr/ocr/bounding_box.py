@@ -6,6 +6,8 @@ from endfield_stocks_ocr.models.bounding_box import BoundingBox
 
 
 class BoundingBoxHandler:
+    """Class to work with the boundig box (screenshot region)
+    """
     def __init__(self, region):
         base_dir = Path(__file__).parent.parent / "config"
         self.config_dir = base_dir / "user_config.toml"
@@ -23,6 +25,8 @@ class BoundingBoxHandler:
         self._config = bounding_box
 
     def _get_bounding_box(self) -> BoundingBox:
+        """Returns the correct boundig box percentages
+        """
         if self.config_dir.exists():
             with resources.open_text(
                 "endfield_stocks_ocr.config", str(self.config_dir)
@@ -56,6 +60,8 @@ class BoundingBoxHandler:
     def set_user_bounding_box(
         self, x: float, y: float, width: float, height: float
     ) -> None:
+        """Creates a user config file if it doesn't exist and adds bounding box data to it. ALl values are percentages.
+        """
         if not self.config_dir.exists():
             self.config_dir.touch()
 

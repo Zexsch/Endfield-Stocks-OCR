@@ -215,7 +215,7 @@ __marimo__/
 *.csv
 
 # Config
-config.toml
+user_config.toml
 
 # Custom
 .vscode

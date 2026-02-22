@@ -5,6 +5,8 @@ from endfield_stocks_ocr.ocr.bounding_box import BoundingBoxHandler
 
 
 def main():
+    """CLI tool to let users manually adjust their region
+    """
     parser = argparse.ArgumentParser()
     parser.add_argument("--wuling", action="store_true")
     args = parser.parse_args()

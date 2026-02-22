@@ -7,6 +7,8 @@ import toml
 
 
 def check_aspect_ratio():
+    """Checks the aspect ratio of the Monitor and adjusts screenshot region
+    """
     width, height = pyautogui.size()
     gcd = math.gcd(width, height)
 

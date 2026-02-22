@@ -2,6 +2,8 @@ from pathlib import Path
 
 
 def unpack():
+    """Creates Necessary directories
+    """
     root_dir = Path(__file__).parent
     data_dir = root_dir / "data"
     output_dir = data_dir / "output"
