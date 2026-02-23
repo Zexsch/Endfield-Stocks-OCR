@@ -6,13 +6,14 @@ from endfield_stocks_ocr import get_values_manual
 from endfield_stocks_ocr import get_values
 from endfield_stocks_ocr import check_aspect_ratio
 from endfield_stocks_ocr import EndfieldLogger
+from endfield_stocks_ocr.config.help import WULING, DEBUG, MANUAL
 
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--wuling", action="store_true")
-    parser.add_argument("--debug", action="store_true")
-    parser.add_argument("--manual", action="store_true")
+    parser.add_argument("--wuling", action="store_true", help=WULING)
+    parser.add_argument("--debug", action="store_true", help=DEBUG)
+    parser.add_argument("--manual", action="store_true", help=MANUAL)
     args = parser.parse_args()
     config = Config()
 
@@ -28,9 +29,8 @@ def main():
     if args.manual:
         config.manual = True
 
-    check_aspect_ratio(config)
-
     if config.manual:
+        check_aspect_ratio(config)
         get_values_manual(config)
     else:
         get_values(config)
