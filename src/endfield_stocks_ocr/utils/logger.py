@@ -3,7 +3,7 @@ from logging import getLogger, INFO, Formatter, DEBUG
 from logging import FileHandler
 from datetime import datetime
 
-from endfield_stocks_ocr import PackageDirs
+from endfield_stocks_ocr.utils.package_dirs import PackageDirs
 
 
 class EndfieldLogger:

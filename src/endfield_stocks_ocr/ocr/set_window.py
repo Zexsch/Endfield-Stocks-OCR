@@ -1,7 +1,7 @@
 import argparse
 
 import pyautogui
-from endfield_stocks_ocr import BoundingBoxHandler
+from endfield_stocks_ocr.ocr.bounding_box import BoundingBoxHandler
 
 
 def main():

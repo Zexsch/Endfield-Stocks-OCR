@@ -5,8 +5,8 @@ import pyautogui
 from endfield_ocr_core import get_ocr_values
 from endfield_ocr_core import Config, Region
 
-from endfield_stocks_ocr import BoundingBoxHandler
-from endfield_stocks_ocr import PackageDirs
+from endfield_stocks_ocr.ocr.bounding_box import BoundingBoxHandler
+from endfield_stocks_ocr.utils.package_dirs import PackageDirs
 from endfield_stocks_ocr import EndfieldLogger
 
 

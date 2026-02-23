@@ -5,7 +5,7 @@ from endfield_ocr_core import get_ocr_values
 from endfield_ocr_core import Config, Region
 from endfield_ocr_core import crop_image
 
-from endfield_stocks_ocr import PackageDirs
+from endfield_stocks_ocr.utils.package_dirs import PackageDirs
 
 
 def get_values(args: Config):
