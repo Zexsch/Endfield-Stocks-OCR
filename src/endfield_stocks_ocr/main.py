@@ -1,11 +1,11 @@
 import argparse
 
-from endfield_ocr_core.config.config import Region, Config
+from endfield_ocr_core import Region, Config
 
-from endfield_stocks_ocr.ocr.get_values_manual import get_values_manual
-from endfield_stocks_ocr.ocr.get_values import get_values
-from endfield_stocks_ocr.utils.aspect_ratio import check_aspect_ratio
-from endfield_stocks_ocr.utils.logger import EndfieldLogger
+from endfield_stocks_ocr import get_values_manual
+from endfield_stocks_ocr import get_values
+from endfield_stocks_ocr import check_aspect_ratio
+from endfield_stocks_ocr import EndfieldLogger
 
 
 def main():

@@ -1,6 +1,7 @@
 import toml
-from endfield_ocr_core.models.bounding_box import BoundingBox
-from endfield_stocks_ocr.utils.package_dirs import PackageDirs
+from endfield_ocr_core import BoundingBox
+
+from endfield_stocks_ocr import PackageDirs
 
 
 class BoundingBoxHandler:
