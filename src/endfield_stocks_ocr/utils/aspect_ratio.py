@@ -3,7 +3,7 @@ import math
 import pyautogui
 import toml
 
-from endfield_ocr_core.models.config import Config
+from endfield_ocr_core.config.config import Config
 
 from endfield_stocks_ocr.utils.package_dirs import PackageDirs
 from endfield_stocks_ocr.utils.logger import EndfieldLogger

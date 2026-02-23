@@ -2,7 +2,7 @@ from datetime import datetime
 
 import pyautogui
 from endfield_ocr_core.get_ocr_values import get_ocr_values
-from endfield_ocr_core.models.config import Config, Region
+from endfield_ocr_core.config.config import Config, Region
 from endfield_ocr_core.crop_image import crop_image
 
 from endfield_stocks_ocr.utils.package_dirs import PackageDirs
