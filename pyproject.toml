@@ -15,6 +15,7 @@ dependencies = [
   "pyautogui",
   "toml",
   "pillow",
+  "platformdirs"
 ]
 
 [project.scripts]
