@@ -1,3 +1,5 @@
+# Default config for manual area setting
+
 [regions]
 valley = "valley"
 wuling = "wuling"
