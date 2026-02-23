@@ -19,9 +19,9 @@ def check_aspect_ratio(args: Config):
 
     if ratio_width == 16 and ratio_height == 9:
         return
-    
+
     logger = EndfieldLogger(debug=args.debug).get_logger()
-    
+
     logger.info(f"Found different aspect ratio: {ratio_width}:{ratio_height}")
 
     dirs = PackageDirs()

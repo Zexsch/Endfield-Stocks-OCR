@@ -9,9 +9,9 @@ width_percent = 0.88
 height_percent = 0.9
 
 [bounding_box_wuling]
-x_percent = 0.052
+x_percent = 0.047
 y_percent = 0.6
-width_percent = 0.52
+width_percent = 0.523
 height_percent = 0.9
 
 [flags]
